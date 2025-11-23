@@ -3,14 +3,11 @@ name: Ping Render Service
 on:
   schedule:
     # Runs every 5 minutes
-    # Note: GitHub Actions schedule events may be delayed during periods of high load.
-    # The shortest interval allowed is every 5 minutes.
-    - cron: '*/5 * * * *'
+    - cron: "*/5 * * * *"
 
 jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
       - name: Ping the Render URL
-        # Use curl to make a simple HTTP GET request to your service URL
-        run: curl -I ${{ secrets.RENDER_URL }}
+        run: curl -I https://teladoc.onrender.com/
