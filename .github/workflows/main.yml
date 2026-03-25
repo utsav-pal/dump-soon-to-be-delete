@@ -1,13 +1,17 @@
-name: Ping Render Service
+name: Ping Render Services
 
 on:
   schedule:
-    # Runs every 5 minutes
-    - cron: "*/5 * * * *"
+    # Runs every 10 minutes to stay within Render's 15-min window
+    - cron: "*/10 * * * *"
+  workflow_dispatch: # Allows you to run it manually for testing
 
 jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
-      - name: Ping the Render URL
+      - name: Ping Teladoc Service
         run: curl -I https://teladoc.onrender.com/
+
+      - name: Ping Mammogram Classification Service
+        run: curl -I https://mamogram-classification-zgjz.onrender.com/
